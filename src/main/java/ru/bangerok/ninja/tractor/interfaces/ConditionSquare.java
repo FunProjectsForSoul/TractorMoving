@@ -1,4 +1,4 @@
-package interfaces;
+package ru.bangerok.ninja.tractor.interfaces;
 
 public interface ConditionSquare {
 

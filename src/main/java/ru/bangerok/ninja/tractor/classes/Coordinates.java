@@ -1,4 +1,4 @@
-package classes;
+package ru.bangerok.ninja.tractor.classes;
 
 public class Coordinates {
     private double x, y;

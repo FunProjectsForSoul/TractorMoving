@@ -1,6 +1,6 @@
-package classes;
+package ru.bangerok.ninja.tractor.classes;
 
-import interfaces.Machine;
+import ru.bangerok.ninja.tractor.interfaces.Machine;
 
 public class Driver {
     private int    act,

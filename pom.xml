@@ -4,45 +4,75 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>kuznetsov</groupId>
-    <artifactId>TractorMoving</artifactId>
-    <packaging>jar</packaging>
-    <version>SNAPSHOT</version>
-    <name>TractorMovingMaven</name>
+    <groupId>ru.bangerok.ninja</groupId>
+    <artifactId>tractor</artifactId>
+    <version>1.0.4</version>
 
     <properties>
+        <!-- Dependencies -->
+        <lombok.version>1.18.20</lombok.version>
+
+        <!-- Plugins -->
+        <maven-compiler.version>3.8.1</maven-compiler.version>
+        <checkstyle-plugin.version>3.1.2</checkstyle-plugin.version>
+        <puppycrawl.checkstyle.version>8.43</puppycrawl.checkstyle.version>
+
+        <!-- Utils -->
+        <java.version>16</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.version>3.3</maven.compiler.version>
-        <maven.jar.version>3.0.2</maven.jar.version>
-        <java.version>1.8</java.version>
+
+        <!-- Sonar Cloud -->
+        <sonar.projectKey>Bangerok_TractorMoving</sonar.projectKey>
+        <sonar.organization>bangerok</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven.compiler.version}</version>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${checkstyle-plugin.version}</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.puppycrawl.tools</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>${puppycrawl.checkstyle.version}</version>
+                    </dependency>
+                </dependencies>
                 <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <encoding>${project.build.sourceEncoding}</encoding>
+                    <configLocation>google-check-style.xml</configLocation>
+                    <violationSeverity>warning</violationSeverity>
+                    <consoleOutput>true</consoleOutput>
+                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>validate</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>${maven.jar.version}</version>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler.version}</version>
                 <configuration>
-                    <archive>
-                        <manifest>
-                            <mainClass>src.main.java.Main</mainClass>
-                            <addClasspath>true</addClasspath>
-                            <classpathPrefix>dependency/</classpathPrefix>
-                        </manifest>
-                        <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
-                    </archive>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
         </plugins>

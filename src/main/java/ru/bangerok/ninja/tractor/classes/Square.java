@@ -1,6 +1,6 @@
-package classes;
+package ru.bangerok.ninja.tractor.classes;
 
-import interfaces.ConditionSquare;
+import ru.bangerok.ninja.tractor.interfaces.ConditionSquare;
 
 public class Square extends Form implements ConditionSquare {
 

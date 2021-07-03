@@ -1,6 +1,6 @@
-package classes;
+package ru.bangerok.ninja.tractor.classes;
 
-import interfaces.ConditionMountain;
+import ru.bangerok.ninja.tractor.interfaces.ConditionMountain;
 
 public class Mountain extends Form implements ConditionMountain {
 

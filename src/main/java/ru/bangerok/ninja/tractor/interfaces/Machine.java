@@ -1,7 +1,7 @@
-package interfaces;
+package ru.bangerok.ninja.tractor.interfaces;
 
-import classes.Driver;
-import classes.Coordinates;
+import ru.bangerok.ninja.tractor.classes.Driver;
+import ru.bangerok.ninja.tractor.classes.Coordinates;
 
 public interface Machine {
     boolean checkMove(Coordinates[] tCoord, Coordinates[] mCoord);

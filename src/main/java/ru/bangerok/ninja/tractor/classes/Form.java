@@ -1,4 +1,4 @@
-package classes;
+package ru.bangerok.ninja.tractor.classes;
 
 import java.util.Arrays;
 
