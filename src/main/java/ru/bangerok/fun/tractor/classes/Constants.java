@@ -1,4 +1,4 @@
-package ru.bangerok.ninja.tractor.classes;
+package ru.bangerok.fun.tractor.classes;
 
 class Constants {
     final static int UP_MOVE    = 1,

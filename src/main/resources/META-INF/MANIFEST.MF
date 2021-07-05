@@ -1,6 +1,0 @@
-Manifest-Version: 1.0
-Built-by: Vladislav
-Build-Jdk: 1.8.0_91
-Created-By: Apache Maven
-ru.bangerok.ninja.tractor.Main-Class: ru.bangerok.ninja.tractor.Main
-Archiver-Version: Plexus Archiver

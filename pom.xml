@@ -3,10 +3,9 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
-    <groupId>ru.bangerok.ninja</groupId>
+    <groupId>ru.bangerok.fun</groupId>
     <artifactId>tractor</artifactId>
-    <version>1.0.4</version>
+    <version>0.0.3</version>
 
     <properties>
         <!-- Dependencies -->
@@ -19,11 +18,13 @@
 
         <!-- Utils -->
         <java.version>16</java.version>
+        <maven.compiler.source>${java.version}</maven.compiler.source>
+        <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- Sonar Cloud -->
-        <sonar.projectKey>Bangerok_TractorMoving</sonar.projectKey>
-        <sonar.organization>bangerok</sonar.organization>
+        <sonar.projectKey>FunProjectsForSoul_TractorMoving</sonar.projectKey>
+        <sonar.organization>fun-projects-for-soul</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
@@ -69,11 +70,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>${maven-compiler.version}</version>
-                <configuration>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
-                    <encoding>${project.build.sourceEncoding}</encoding>
-                </configuration>
             </plugin>
         </plugins>
     </build>

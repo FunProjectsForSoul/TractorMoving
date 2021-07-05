@@ -1,4 +1,4 @@
-package ru.bangerok.ninja.tractor;
+package ru.bangerok.fun.tractor;
 //Формулировка задачи:
 /*=======================================================================================================
     Есть квадратное поле n x n клеток. По центру этого поля расположена квадратная гора m x m клеток,
@@ -12,19 +12,20 @@ package ru.bangerok.ninja.tractor;
       3) Вывести текущие координаты левого нижнего угла трактора.
 ========================================================================================================*/
 
-import ru.bangerok.ninja.tractor.classes.Mountain;
-import ru.bangerok.ninja.tractor.classes.Square;
-import ru.bangerok.ninja.tractor.classes.Tractor;
-import ru.bangerok.ninja.tractor.interfaces.ConditionMountain;
-import ru.bangerok.ninja.tractor.interfaces.ConditionSquare;
-import ru.bangerok.ninja.tractor.interfaces.Machine;
+import ru.bangerok.fun.tractor.classes.Mountain;
+import ru.bangerok.fun.tractor.classes.Square;
+import ru.bangerok.fun.tractor.classes.Tractor;
+import ru.bangerok.fun.tractor.interfaces.ConditionMountain;
+import ru.bangerok.fun.tractor.interfaces.ConditionSquare;
+import ru.bangerok.fun.tractor.interfaces.Machine;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Main{
+public class Main {
+
     public static void main(String[] args){
         Random rand = new Random();
         Scanner sc = new Scanner(System.in);

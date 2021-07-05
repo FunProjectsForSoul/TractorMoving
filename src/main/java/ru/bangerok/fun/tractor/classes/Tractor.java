@@ -1,6 +1,6 @@
-package ru.bangerok.ninja.tractor.classes;
+package ru.bangerok.fun.tractor.classes;
 
-import ru.bangerok.ninja.tractor.interfaces.Machine;
+import ru.bangerok.fun.tractor.interfaces.Machine;
 
 public class Tractor extends Form implements Machine {
     private Driver driver;
