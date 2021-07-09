@@ -1,46 +1,31 @@
-# TODO: update for my projects.
+## Описание
+* Подробно опишите свои изменения;
+* Обратите внимание на любые проблемы, которые устраняются с помощью этого PR, например, устраняет #4213 или 
+исправляет #2312.
 
-## Example
-___
+## Мотивация и контекст
+* Почему требуется это изменение?
+* Какую проблему оно решает?
+* Если это устраняет открытую проблему, пожалуйста, перейдите по ссылке на проблему здесь.
 
-## Description
-<!-- Describe your changes in detail -->
-<!-- Note any issues that are resolved by this PR -->
-<!-- e.g. resolves #4213 or fixes #2312 -->
+## Как это было проверено?
+* Все PR должны по возможности внедрять модульные тесты;
+* Пожалуйста, опишите, как вы тестировали свои изменения;
+* Создали ли вы новые тесты или обновили существующие?
 
-## Motivation and Context
-<!-- Why is this change required? What problem does it solve? -->
-<!-- If it fixes an open issue, please link to the issue here. -->
+## Типы изменений
+Какие типы изменений вносит ваш код? Поставьте крестик во всех соответствующих полях:
+* [ ] Исправлена ошибка;
+* [ ] Новое усовершенствование;
+* [ ] Техническое обслуживание: рефакторинг;
+* [ ] Техническое обслуживание: документация;
+* [ ] Техническое обслуживание: настройка.
 
-## How Has This Been Tested?
-<!-- All PR's should implement unit tests if possible -->
-<!-- Please describe how you tested your changes. -->
-<!-- Have you created new tests or updated existing ones? -->
-<!-- e.g. unit | visually | e2e | none -->
+Также установите соответствующую метку.
 
-## Markup:
-<!-- Information on how to setup your local development environment can be found here: -->
-<!-- https://vuetifyjs.com/getting-started/contributing#setup-dev-environment -->
-
-<!-- Paste markup for testing your change --->
-<details>
-
-```vue
-// Paste your FULL Playground.vue here
-```
-</details>
-
-## Types of changes
-<!-- What types of changes does your code introduce? Put an `x` in all the boxes that apply: -->
-- [ ] Bug fix (non-breaking change which fixes an issue)
-- [ ] New feature (non-breaking change which adds functionality)
-- [ ] Breaking change (fix or feature that would cause existing functionality to not work as expected)
-- [ ] Improvement/refactoring (non-breaking change that doesn't add any features but makes things better)
-
-## Checklist:
-<!-- Go over all the following points, and put an `x` in all the boxes that apply. -->
-<!-- If you're unsure about any of these, don't hesitate to ask. We're here to help! -->
-- [ ] The PR title is no longer than 64 characters.
-- [ ] The PR is submitted to the correct branch (`master` for bug fixes and documentation updates, `dev` for new features and backwards compatible changes and `next` for non-backwards compatible changes).
-- [ ] My code follows the code style of this project.
-- [ ] I've added relevant changes to the documentation (applies to new features and breaking changes in core library)
+## Контрольный список:
+Пройдите по всем следующим пунктам и поставьте крестик во всех соответствующих полях. Если вы не уверены в чем-либо из 
+этого, не стесняйтесь спрашивать. Мы здесь, чтобы помочь!
+- [ ] Заголовок PR не должен превышать 64 символа.
+- [ ] Мой код соответствует стилю кода этого проекта;
+- [ ] Я добавил соответствующие изменения в документацию.

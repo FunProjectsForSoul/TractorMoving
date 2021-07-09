@@ -3,29 +3,43 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>ru.bangerok.fun</groupId>
-    <artifactId>tractor</artifactId>
-    <version>0.0.3</version>
+    <groupId>io.github.hogwartsschoolofmagic</groupId>
+    <artifactId>tractor-moving</artifactId>
+    <version>1.0.0</version>
+    <name>Tractor Moving</name>
+    <description>Tractor control application.</description>
+    <url>https://github.com/HogwartsSchoolOfMagic/TractorMoving</url>
+
+    <organization>
+        <name>Vladislav Kuznetsov</name>
+        <url>https://vk.com/vladislav_kuznetsov</url>
+    </organization>
+
+    <contributors>
+        <contributor>
+            <name>Vladislav Kuznetsov</name>
+            <roles>
+                <role>Java Developer</role>
+            </roles>
+        </contributor>
+    </contributors>
 
     <properties>
         <!-- Dependencies -->
-        <lombok.version>1.18.20</lombok.version>
+        <lombok.version>1.18.24</lombok.version>
+        <slfj-api.version>1.7.36</slfj-api.version>
+        <logback-classic.version>1.2.11</logback-classic.version>
 
         <!-- Plugins -->
-        <maven-compiler.version>3.8.1</maven-compiler.version>
-        <checkstyle-plugin.version>3.1.2</checkstyle-plugin.version>
-        <puppycrawl.checkstyle.version>8.43</puppycrawl.checkstyle.version>
+        <maven-compiler.version>3.10.1</maven-compiler.version>
+        <maven-dependency.version>3.3.0</maven-dependency.version>
+        <maven-jar.version>3.2.2</maven-jar.version>
 
         <!-- Utils -->
-        <java.version>16</java.version>
+        <java.version>18</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <!-- Sonar Cloud -->
-        <sonar.projectKey>FunProjectsForSoul_TractorMoving</sonar.projectKey>
-        <sonar.organization>fun-projects-for-soul</sonar.organization>
-        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
 
     <dependencies>
@@ -34,43 +48,152 @@
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slfj-api.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback-classic.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${checkstyle-plugin.version}</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.puppycrawl.tools</groupId>
-                        <artifactId>checkstyle</artifactId>
-                        <version>${puppycrawl.checkstyle.version}</version>
-                    </dependency>
-                </dependencies>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler.version}</version>
                 <configuration>
-                    <configLocation>google-check-style.xml</configLocation>
-                    <violationSeverity>warning</violationSeverity>
-                    <consoleOutput>true</consoleOutput>
-                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${maven-dependency.version}</version>
                 <executions>
                     <execution>
-                        <id>validate</id>
-                        <phase>initialize</phase>
+                        <id>copy-dependencies</id>
+                        <phase>prepare-package</phase>
                         <goals>
-                            <goal>check</goal>
+                            <goal>copy-dependencies</goal>
                         </goals>
+                        <configuration>
+                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
+                            <overWriteReleases>false</overWriteReleases>
+                            <overWriteSnapshots>false</overWriteSnapshots>
+                            <overWriteIfNewer>true</overWriteIfNewer>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven-compiler.version}</version>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven-jar.version}</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>io.github.hogwartsschoolofmagic.tractormoving.TractorApplication</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>checkstyle</id>
+            <properties>
+                <!-- Plugin properties -->
+                <puppycrawl.checkstyle.version>10.3</puppycrawl.checkstyle.version>
+                <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
+            </properties>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-checkstyle-plugin</artifactId>
+                        <!--suppress MavenModelInspection -->
+                        <version>${maven-checkstyle-plugin.version}</version>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.puppycrawl.tools</groupId>
+                                <artifactId>checkstyle</artifactId>
+                                <!--suppress MavenModelInspection -->
+                                <version>${puppycrawl.checkstyle.version}</version>
+                            </dependency>
+                        </dependencies>
+                        <configuration>
+                            <configLocation>docs/google-check-style.xml</configLocation>
+                            <violationSeverity>warning</violationSeverity>
+                            <consoleOutput>true</consoleOutput>
+                            <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>validate</id>
+                                <phase>initialize</phase>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>sonar</id>
+            <properties>
+                <!-- Plugin properties -->
+                <sonar-maven-plugin.version>3.9.1.2184</sonar-maven-plugin.version>
+
+                <!-- Code analyzer: SonarCloud -->
+                <sonar.projectKey>HogwartsSchoolOfMagic_TractorMoving</sonar.projectKey>
+                <sonar.moduleKey>${project.groupId}:${project.artifactId}</sonar.moduleKey>
+                <sonar.organization>hogwarts-school-of-magic</sonar.organization>
+                <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+                <sonar.sources>src/main/java</sonar.sources>
+                <sonar.java.binaries>target/classes</sonar.java.binaries>
+            </properties>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonarsource.scanner.maven</groupId>
+                        <artifactId>sonar-maven-plugin</artifactId>
+                        <!--suppress MavenModelInspection -->
+                        <version>${sonar-maven-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sonar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
