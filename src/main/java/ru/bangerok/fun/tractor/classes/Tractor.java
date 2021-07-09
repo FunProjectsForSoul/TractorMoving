@@ -1,41 +1,43 @@
 package ru.bangerok.fun.tractor.classes;
 
-import ru.bangerok.fun.tractor.interfaces.Machine;
+import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
+import ru.bangerok.fun.tractor.absctract.AbstractMachine;
+import ru.bangerok.fun.tractor.record.Coordinates;
+import ru.bangerok.fun.tractor.record.Driver;
 
-public class Tractor extends Form implements Machine {
-    private Driver driver;
+/**
+ * Tractor view.
+ *
+ * @author Vladislav [Bangerok] Kuznetsov.
+ */
+@Getter
+@Setter
+public class Tractor extends AbstractMachine {
 
-    public Tractor(double side, double x, double y) {
-        super(side, x, y);
-    }
+  /**
+   * Tractor driver.
+   */
+  private Driver driver;
 
-    public Driver getDriver() {
-        return driver;
-    }
+  public Tractor(double side, double x, double y) {
+    super(side, x, y);
+  }
 
-    public void setDriver(int act, double side, int count) {
-        driver = new Driver(act, side, count);
-    }
-
-    @Override
-    public Coordinates[] getCoords() {
-        return super.getCoords();
-    }
-
-    @Override
-    public void setCoords(Coordinates[] temp) {
-        super.setCoords(temp);
-    }
-
-    public boolean checkMove(Coordinates[] tCoords, Coordinates[] mCoord) {
-
-        for (Coordinates i: tCoords){
-            if ((i.getX() > mCoord[0].getX()) && (i.getX() < mCoord[3].getX()) &&
-                (i.getY() > mCoord[0].getY()) && (i.getY() < mCoord[1].getY())) {
-                return false;
-            }
-        }
-        return true;
-    }
+  /**
+   * Checking the ability to move the tractor.
+   *
+   * @param tractorCoords tractor coordinates.
+   * @param mountainCoords mountain coordinates.
+   * @return true, if you can move, else false.
+   */
+  public boolean checkMove(List<Coordinates> tractorCoords, List<Coordinates> mountainCoords) {
+    return tractorCoords.stream()
+        .noneMatch(i -> (i.x() > mountainCoords.get(0).x())
+            && (i.x() < mountainCoords.get(3).x())
+            && (i.y() > mountainCoords.get(0).y())
+            && (i.y() < mountainCoords.get(1).y())
+        );
+  }
 }
-
